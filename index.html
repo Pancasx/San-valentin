@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
-        background-image: url("https://ruta-a-tu-imagen-de-rosas.jpg");
+        background-color: #ff4b5c;
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -20,24 +20,35 @@
         color: white;
         text-shadow: 2px 2px 4px #000;
         font-family: "Helvetica Neue", sans-serif;
+        text-align: center;
+        position: relative;
       }
       h1 {
         font-size: 2.5em;
         margin: 0.5em;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+      }
+      .boton-container {
+        display: flex;
+        gap: 20px;
+        margin-top: 1em;
       }
       button {
         padding: 0.8em 2em;
         font-size: 1.2em;
         color: #fff;
-        background-color: #ff4b5c;
+        background-color: #d62828;
         border: none;
         border-radius: 10px;
         cursor: pointer;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         transition: background-color 0.3s ease;
+        opacity: 0;
+        animation: fadeIn 1s forwards 0.5s;
       }
       button:hover {
-        background-color: #e84352;
+        background-color: #a61c1c;
       }
       #mensaje {
         display: none;
@@ -46,9 +57,19 @@
         padding: 0 1em;
         max-width: 600px;
         text-align: center;
-        animation: aparecer 1s forwards;
+        animation: fadeIn 1s forwards;
       }
-      @keyframes aparecer {
+      .imagenes-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 400px;
+      }
+      .imagen {
+        width: 150px;
+        height: auto;
+      }
+      @keyframes fadeIn {
         from {
           opacity: 0;
         }
@@ -59,17 +80,96 @@
     </style>
   </head>
   <body>
-    <h1>¿Quieres ser mi San Valentín?</h1>
-    <button onclick="mostrarMensaje()">Sí</button>
-    <div id="mensaje">
+    <div class="imagenes-container">
+      <img src="pookie_1.jpeg" class="imagen" />
+      <img src="pookie_2.jpeg" class="imagen" />
+    </div>
+    <h1 id="mensajeTexto">Hola Pookie, ¿Cómo estás?</h1>
+    <div class="boton-container" id="botonContainer">
+      <button onclick="mostrarMensajeMal()">Mal</button>
+      <button onclick="siguienteMensaje()">Bien</button>
+    </div>
+    <p
+      id="mensajeMal"
+      style="
+        display: none;
+        font-size: 1.2em;
+        max-width: 600px;
+        text-align: center;
+      "
+    >
+      Pues dudo mucho que estés mal si me tienes a mí y encima esta página web
+      tan mona de San Valentín.
+    </p>
+    <p
+      id="mensajeEnserio"
+      style="
+        display: none;
+        font-size: 1.2em;
+        max-width: 600px;
+        text-align: center;
+      "
+    >
+      Pookie no seas MALA, sígueme el juego :(
+    </p>
+    <div id="mensaje" style="display: none">
       <p>
         Eres una persona muy especial y te quiero mucho. Prepárate para una
         serie de detallitos.
       </p>
     </div>
     <script>
+      let mensajes = [
+        "Hola Pookie, ¿Cómo estás?",
+        "Quiero decirte que eres una persona increíblemente especial para mí y me hace muy feliz tenerte en mi vida.",
+        "Me gustaría saber una cosa muuuuuuuuuuuuuuy importante",
+        "¿Quieres ser mi San Valentín?",
+      ];
+      let indice = 0;
+
+      function mostrarMensajeMal() {
+        document.getElementById("mensajeMal").style.display = "block";
+      }
+
+      function mostrarMensajeEnserio() {
+        document.getElementById("mensajeEnserio").style.display = "block";
+      }
+
+      function siguienteMensaje() {
+        let mensajeTexto = document.getElementById("mensajeTexto");
+        let botonContainer = document.getElementById("botonContainer");
+        let mensajeMal = document.getElementById("mensajeMal");
+        let mensajeEnserio = document.getElementById("mensajeEnserio");
+        mensajeTexto.style.opacity = "0";
+        setTimeout(() => {
+          indice++;
+          if (indice < mensajes.length) {
+            mensajeTexto.innerText = mensajes[indice];
+            mensajeTexto.style.opacity = "1";
+            mensajeMal.style.display = "none";
+            mensajeEnserio.style.display = "none";
+
+            if (indice === 1) {
+              botonContainer.innerHTML = `<button onclick="siguienteMensaje()">Ya sabía porque soy lo mejor</button> <button onclick="mostrarMensajeEnserio()">ENSERIO? PRIMERA NOTICIA</button>`;
+            } else if (indice === 2) {
+              botonContainer.innerHTML = `<button onclick="siguienteMensaje()">¿Qué cosa será?</button>`;
+            } else if (indice === 3) {
+              botonContainer.innerHTML = `<button onclick="mostrarMensaje()">Sí</button> <button onclick="mostrarMensajeNo()">No</button>`;
+            }
+          }
+        }, 500);
+      }
+
       function mostrarMensaje() {
+        document.getElementById("mensajeTexto").style.display = "none";
+        document.getElementById("botonContainer").style.display = "none";
         document.getElementById("mensaje").style.display = "block";
+      }
+
+      function mostrarMensajeNo() {
+        alert(
+          "POOKIE NO ME CREO QUE SIQUIERA HAYAS PENSADO EN NO SER MI SAN VALENTÍN, ENTONCES SABRÁ DIOS QUIÉN SERÁ"
+        );
       }
     </script>
   </body>
