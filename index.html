@@ -37,7 +37,7 @@
         margin-right: 20px; /* Espacio entre las imágenes y el texto */
       }
       .imagen {
-        width: 500px; /* Tamaño de las imágenes */
+        width: 150px; /* Tamaño de las imágenes */
         height: auto;
       }
       h1 {
@@ -127,74 +127,75 @@
         serie de detallitos.
       </p>
     </div>
-    <script>
-      let mensajes = [
-        "Hola Pookie, ¿Cómo estás?",
-        "Quiero decirte que eres una persona increíblemente especial para mí y me hace muy feliz tenerte en mi vida.",
-        "Me gustaría saber una cosa muuuuuuuuuuuuuuy importante",
-        "¿Quieres ser mi San Valentín?",
-      ];
-      let indice = 0;
-      let imagenes = [
-        ["pookie_1.jpeg", "pookie_2.jpeg"],
-        ["pookie_3.jpeg", "pookie_4.jpeg"],
-        ["pookie_5.jpeg", "pookie_6.jpeg"],
-        ["pookie_7.jpeg", "pookie_8.jpeg"],
-      ];
+<script>
+  let mensajes = [
+    "Hola Pookie, ¿Cómo estás?",
+    "Quiero decirte que eres una persona increíblemente especial para mí y me hace muy feliz tenerte en mi vida.",
+    "Me gustaría saber una cosa muuuuuuuuuuuuuuy importante",
+    "¿Quieres ser mi San Valentín?",
+  ];
+  let indice = 0;
 
-      function mostrarMensajeMal() {
-        document.getElementById("mensajeMal").style.display = "block";
+  let imagenes = [
+    ["pookie_1.jpeg", "pookie_2.jpeg"], // Primer mensaje
+    ["pookie_3.jpeg", "pookie_4.jpeg"], // Segundo mensaje
+    ["pookie_5.jpeg", "pookie_6.jpeg"], // Tercer mensaje
+    ["pookie_7.jpeg", "pookie_8.jpeg"], // Cuarto mensaje
+  ];
+
+  function mostrarMensajeMal() {
+    document.getElementById("mensajeMal").style.display = "block";
+  }
+
+  function mostrarMensajeEnserio() {
+    document.getElementById("mensajeEnserio").style.display = "block";
+  }
+
+  function siguienteMensaje() {
+    let mensajeTexto = document.getElementById("mensajeTexto");
+    let botonContainer = document.getElementById("botonContainer");
+    let mensajeMal = document.getElementById("mensajeMal");
+    let mensajeEnserio = document.getElementById("mensajeEnserio");
+    let imagenesContainer = document.getElementById("imagenesContainer");
+    let imagen1 = imagenesContainer.getElementsByTagName("img")[0];
+    let imagen2 = imagenesContainer.getElementsByTagName("img")[1];
+
+    mensajeTexto.style.opacity = "0";
+    setTimeout(() => {
+      indice++;
+      if (indice < mensajes.length) {
+        mensajeTexto.innerText = mensajes[indice];
+        mensajeTexto.style.opacity = "1";
+        mensajeMal.style.display = "none";
+        mensajeEnserio.style.display = "none";
+
+        // Cambiar las imágenes
+        imagen1.src = imagenes[indice][0];
+        imagen2.src = imagenes[indice][1];
+
+        if (indice === 1) {
+          botonContainer.innerHTML = `<button onclick="siguienteMensaje()">Ya sabía porque soy lo mejor</button> <button onclick="mostrarMensajeEnserio()">ENSERIO? PRIMERA NOTICIA</button>`;
+        } else if (indice === 2) {
+          botonContainer.innerHTML = `<button onclick="siguienteMensaje()">¿Qué cosa será?</button>`;
+        } else if (indice === 3) {
+          botonContainer.innerHTML = `<button onclick="mostrarMensaje()">Sí</button> <button onclick="mostrarMensajeNo()">No</button>`;
+        }
       }
+    }, 500);
+  }
 
-      function mostrarMensajeEnserio() {
-        document.getElementById("mensajeEnserio").style.display = "block";
-      }
+  function mostrarMensaje() {
+    document.getElementById("mensajeTexto").style.display = "none";
+    document.getElementById("botonContainer").style.display = "none";
+    document.getElementById("mensaje").style.display = "block";
+  }
 
-      function siguienteMensaje() {
-        let mensajeTexto = document.getElementById("mensajeTexto");
-        let botonContainer = document.getElementById("botonContainer");
-        let mensajeMal = document.getElementById("mensajeMal");
-        let mensajeEnserio = document.getElementById("mensajeEnserio");
-        let imagenesContainer = document.getElementById("imagenesContainer");
-        let imagen1 = imagenesContainer.getElementsByTagName("img")[0];
-        let imagen2 = imagenesContainer.getElementsByTagName("img")[1];
-
-        mensajeTexto.style.opacity = "0";
-        setTimeout(() => {
-          indice++;
-          if (indice < mensajes.length) {
-            mensajeTexto.innerText = mensajes[indice];
-            mensajeTexto.style.opacity = "1";
-            mensajeMal.style.display = "none";
-            mensajeEnserio.style.display = "none";
-
-            // Cambiar las imágenes
-            imagen1.src = imagenes[indice][0];
-            imagen2.src = imagenes[indice][1];
-
-            if (indice === 1) {
-              botonContainer.innerHTML = `<button onclick="siguienteMensaje()">Ya sabía porque soy lo mejor</button> <button onclick="mostrarMensajeEnserio()">ENSERIO? PRIMERA NOTICIA</button>`;
-            } else if (indice === 2) {
-              botonContainer.innerHTML = `<button onclick="siguienteMensaje()">¿Qué cosa será?</button>`;
-            } else if (indice === 3) {
-              botonContainer.innerHTML = `<button onclick="mostrarMensaje()">Sí</button> <button onclick="mostrarMensajeNo()">No</button>`;
-            }
-          }
-        }, 500);
-      }
-
-      function mostrarMensaje() {
-        document.getElementById("mensajeTexto").style.display = "none";
-        document.getElementById("botonContainer").style.display = "none";
-        document.getElementById("mensaje").style.display = "block";
-      }
-
-      function mostrarMensajeNo() {
-        alert(
-          "POOKIE NO ME CREO QUE SIQUIERA HAYAS PENSADO EN NO SER MI SAN VALENTÍN, ENTONCES SABRÁ DIOS QUIÉN SERÁ"
-        );
-      }
-    </script>
+  function mostrarMensajeNo() {
+    alert(
+      "POOKIE NO ME CREO QUE SIQUIERA HAYAS PENSADO EN NO SER MI SAN VALENTÍN, ENTONCES SABRÁ DIOS QUIÉN SERÁ"
+    );
+  }
+</script>
   </body>
 </html>
 
