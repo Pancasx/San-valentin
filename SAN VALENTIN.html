@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>¿Quieres ser mi San Valentín?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-image: url("https://ruta-a-tu-imagen-de-rosas.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+        text-shadow: 2px 2px 4px #000;
+        font-family: "Helvetica Neue", sans-serif;
+      }
+      h1 {
+        font-size: 2.5em;
+        margin: 0.5em;
+      }
+      button {
+        padding: 0.8em 2em;
+        font-size: 1.2em;
+        color: #fff;
+        background-color: #ff4b5c;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #e84352;
+      }
+      #mensaje {
+        display: none;
+        margin-top: 2em;
+        font-size: 1.5em;
+        padding: 0 1em;
+        max-width: 600px;
+        text-align: center;
+        animation: aparecer 1s forwards;
+      }
+      @keyframes aparecer {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>¿Quieres ser mi San Valentín?</h1>
+    <button onclick="mostrarMensaje()">Sí</button>
+    <div id="mensaje">
+      <p>
+        Eres una persona muy especial y te quiero mucho. Prepárate para una
+        serie de detallitos.
+      </p>
+    </div>
+    <script>
+      function mostrarMensaje() {
+        document.getElementById("mensaje").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
