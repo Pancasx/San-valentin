@@ -25,23 +25,31 @@
       }
       .contenido {
         display: flex;
-        align-items: center; /* Alinea el contenido verticalmente */
-        justify-content: space-between; /* Coloca las imágenes a los lados */
-        width: 80%; /* Ajusta el ancho del contenedor */
+        justify-content: center; /* Centra todo el contenido */
+        align-items: center; /* Centra el contenido verticalmente */
+        width: 100%; /* Toma todo el ancho disponible */
         max-width: 1200px; /* Limita el ancho máximo */
+      }
+      .imagenes-container {
+        display: flex;
+        flex-direction: column; /* Coloca las imágenes en columna */
+        gap: 20px;
+        margin-right: 20px; /* Espacio entre las imágenes y el texto */
+      }
+      .imagen {
+        width: 500px; /* Tamaño de las imágenes */
+        height: auto;
       }
       h1 {
         font-size: 2.5em;
         margin: 0.5em;
         opacity: 0;
         animation: fadeIn 1s forwards;
-        order: 2; /* Coloca el texto en el centro */
       }
       .boton-container {
         display: flex;
         gap: 20px;
-        margin-top: 1em;
-        order: 3; /* Coloca los botones debajo del texto */
+        margin-top: 2em; /* Espacio debajo del texto */
       }
       button {
         padding: 0.8em 2em;
@@ -67,16 +75,6 @@
         max-width: 600px;
         text-align: center;
         animation: fadeIn 1s forwards;
-      }
-      .imagenes-container {
-        display: flex;
-        flex-direction: column; /* Coloca las imágenes en columna por defecto */
-        align-items: center; /* Centra las imágenes verticalmente */
-        gap: 20px;
-      }
-      .imagen {
-        width: 250px; /* Tamaño reducido de las imágenes */
-        height: auto;
       }
       @keyframes fadeIn {
         from {
@@ -199,3 +197,4 @@
     </script>
   </body>
 </html>
+
